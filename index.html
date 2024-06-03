@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Form to Table</title>
+  <style>
+    body {
+      font-family: sans-serif;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      text-align: left;
+      padding: 8px;
+      border: 1px solid #ddd;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+    button {
+      background-color: #4c77af;
+      color: white;
+      padding: 10px 20px;
+      margin: 8px 0;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Subject Marks</h2>
+
+<form id="subjectForm">
+  <label for="subject1">Subject 1:</label><br>
+  <input type="text" id="subject1" name="subject1"><br>
+  <label for="subject2">Subject 2:</label><br>
+  <input type="text" id="subject2" name="subject2"><br>
+  <label for="subject3">Subject 3:</label><br>
+  <input type="text" id="subject3" name="subject3"><br>
+  <label for="subject4">Subject 4:</label><br>
+  <input type="text" id="subject4" name="subject4"><br><br>
+  <button type="button" onclick="displayTable()">Submit</button>
+</form>
+
+<div id="subjectTable" style="display:none;">
+  <h2>Subject Marks and GPA</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Subject</th>
+        <th>Marks</th>
+      </tr>
+    </thead>
+    <tbody id="tableBody">
+      </tbody>
+  </table>
+</div>
+
+<script>
+  function displayTable() {
+    var tableBody = document.getElementById("tableBody");
+    tableBody.innerHTML = "";
+
+    var subject1 = document.getElementById("subject1").value;
+    var subject2 = document.getElementById("subject2").value;
+    var subject3 = document.getElementById("subject3").value;
+    var subject4 = document.getElementById("subject4").value;
+
+    var subjects = ["Subject 1", "Subject 2", "Subject 3", "Subject 4"];
+    var marks = [subject1, subject2, subject3, subject4];
+
+    for (var i = 0; i < subjects.length; i++) {
+      var row = tableBody.insertRow();
+      var subjectCell = row.insertCell();
+      var marksCell = row.insertCell();
+      subjectCell.innerHTML = subjects[i];
+      marksCell.innerHTML = marks[i];
+    }
+
+    document.getElementById("subjectTable").style.display = "block";
+    document.getElementById("subjectForm").style.display = "none";
+  }
+</script>
+
+</body>
+</html>
